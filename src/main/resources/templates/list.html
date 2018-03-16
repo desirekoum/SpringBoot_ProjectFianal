@@ -5,23 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Instructor</th>
-        <th>Credits</th>
-        <td>Actions</td>
-    </tr>
-    <tr th:each="message  : ${messages}">
-        <td th:text="${message.content}"></td>
-        <td th:text="${message.postedDate}"></td>
-        <td th:text="${message.sentBy}"></td>
-        <td>
-            <a th:href="@{/update/{id} (id=message.id)}">Update</a>
-            <a th:href="@{/detail/{id} (id=message.id)}">Details</a>
-            <a th:href="@{/delete/{id} (id=message.id)}">Delete</a>
-        </td>
-    </tr>
-</table>
+<p><a href="/add">Post a Message</a></p>
+<div class="message-block" align="left" th:block="Message">
+    <div th:each="message  : ${messages}">
+        <p>
+            Sent By : <label float="right" th:text="${message.sentBy}"></label><br/>
+            <label th:text="${message.content}"></label><br/><br/>
+            Date : <label align="right" th:inline="text">[[${message.postedDate}]]</label><br/>
+        </p>
+        --------------------------------------------------------------------
+    </div>
+</div>
+<p><a href="/add">Post a Message</a></p>
 </body>
 </html>

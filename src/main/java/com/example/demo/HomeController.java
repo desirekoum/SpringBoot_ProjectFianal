@@ -2,6 +2,8 @@ package com.example.demo;
 
 import javax.validation.Valid;
 
+import com.example.demo.Message;
+import com.example.demo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,21 +20,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String listMessage(Model model){
-        Message message  = new Message("01/20/2018","Hey this is the first message.", "desire@mpondo");
-        messageRepository.save(message);
-
-        message  = new Message("01/20/2018","Hey this is the first message.", "desire@mpondo");
-        messageRepository.save(message);
-
-        message  = new Message("01/20/2018","Hey this is the first message.", "desire@mpondo");
-        messageRepository.save(message);
-
-        message  = new Message("01/20/2018","Hey this is the first message.", "desire@mpondo");
-        messageRepository.save(message);
-
-        message  = new Message("01/20/2018","Hey this is the first message.", "desire@mpondo");
-        messageRepository.save(message);
-
         model.addAttribute("messages", messageRepository.findAll());
         return  "list";
     }
@@ -54,21 +41,4 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping("/detail/{id}")
-    public String showMessage(@PathVariable("id") long id, Model model){
-        model.addAttribute("message", messageRepository.findOne(id));
-        return  "show";
-    }
-
-    @RequestMapping("/update/{id}")
-    public String updateMessage(@PathVariable("id") long id, Model model){
-        model.addAttribute("message", messageRepository.findOne(id));
-        return "messageform";
-    }
-
-    @RequestMapping("/delete/{id}")
-    public String delMessage(@PathVariable("id") long id){
-        messageRepository.delete(id);
-        return "redirect:/";
-    }
 }

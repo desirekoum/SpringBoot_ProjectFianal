@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<h3>Post a New Message </h3>
-<p>-------------------</p>
+<h4>Post a New Message </h4>
+<br/>
 <form action="#" th:action="@{/process}" th:object="${message}" method="post">
     <table>
         <tr><input type="hidden" th:field="*{id}" />
@@ -19,12 +19,18 @@
         </tr>
         <tr>
             <td>Content :</td>
-            <td><textarea rows="3" th:field="*{content}" /><span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"/><br/></td>
+            <td><textarea rows="5" cols="50" th:field="*{content}" /><span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"/><br/></td>
         </tr>
         <tr>
-            <input type="submit" value="Submit" />
+            <td></td>
+            <td>
+                <div>
+                    <input type="submit" value="Submit" />
+                </div>
+            </td>
         </tr>
     </table>
+
 </form>
 </body>
 </html>
