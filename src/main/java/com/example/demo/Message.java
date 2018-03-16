@@ -20,10 +20,22 @@ public class Message {
     private String content;
 
     @NotNull
+    @Size(min=6)
     private String postedDate;
 
     @NotNull
+    @Size(min=2, max=20)
     private String sentBy;
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    private String picture;
 
     public Message() {
     }

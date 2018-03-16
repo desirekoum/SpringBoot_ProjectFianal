@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.com">
-<head>
+<head th:replace="base :: headstuff">
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 <body>
-<h4>Post a New Message </h4>
-<br/>
-<form action="#" th:action="@{/process}" th:object="${message}" method="post">
-    <table>
-        <tr><input type="hidden" th:field="*{id}" />
-            <td>Date :</td>
-            <td><input type="text" th:field="*{postedDate}" /><span th:if="${#fields.hasErrors('postedDate')}"  th:errors="*{postedDate}"/><br/></td>
-        </tr>
-        <tr>
-            <td>Sender :</td>
-            <td><input type="text" th:field="*{sentBy}" /><span th:if="${#fields.hasErrors('sentBy')}" th:errors="*{sentBy}"/><br/></td>
-        </tr>
-        <tr>
-            <td>Content :</td>
-            <td><textarea rows="5" cols="50" th:field="*{content}" /><span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"/><br/></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div>
-                    <input type="submit" value="Submit" />
-                </div>
-            </td>
-        </tr>
-    </table>
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <div class="jumbotron">
+        <h4>Post a New Message </h4>
+        <br/>
+        <form action="#" th:action="@{/add}" th:object="${message}" method="post" enctype="multipart/form-data">
+            <table>
+                <tr><input type="hidden" th:field="*{id}" />
+                    <td>Date :</td>
+                    <td><input type="text" th:field="*{postedDate}" required="true" /><span th:if="${#fields.hasErrors('postedDate')}"  th:errors="*{postedDate}"/><br/></td>
+                </tr>
+                <tr>
+                    <td>Sender :</td>
+                    <td><input type="text" th:field="*{sentBy}"  required="true"/><span th:if="${#fields.hasErrors('sentBy')}" th:errors="*{sentBy}"/><br/></td>
+                </tr>
+                <tr>
+                    <td>Content :</td>
+                    <td><textarea rows="5" cols="50" th:field="*{content}" /><span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"/><br/></td>
+                </tr>
+                <tr>
+                    <td>Add a Picture :</td>
+                    <td><input type="file" name="file" required="true" /><br/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div>
+                         <input type="submit" value="Submit" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
 
-</form>
+        </form>
+
+    </div>
+</div>
+<nav th:replace="base :: footer"></nav>
+<th:block th:repalce="base :: jslinks"></th:block>
 </body>
 </html>

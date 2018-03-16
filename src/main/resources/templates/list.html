@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.com">
-<head>
+<head th:replace="base :: headstuff">
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <div class="jumbotron">
 <p><a href="/add">Post a Message</a></p>
 <div class="message-block" align="left" th:block="Message">
     <div th:each="message  : ${messages}">
-        <p>
-            Sent By : <label float="right" th:text="${message.sentBy}"></label><br/>
-            <label th:text="${message.content}"></label><br/><br/>
-            Date : <label align="right" th:inline="text">[[${message.postedDate}]]</label><br/>
-        </p>
+        <table>
+            <tr>
+                <td>
+                    <div th:if="${message.picture} !=null">
+                        <img th:src="${message.picture}" />
+                        <hr/>
+                    </div>
+                </td>
+                <td>
+                    <p>
+                        <label float="right" th:text="${message.sentBy}"></label><br/>
+                        <label th:text="${message.content}"></label><br/><br/>
+                        Date : <label align="right" th:inline="text">[[${message.postedDate}]]</label><br/>
+                     </p>
+                </td>
+            </tr>
+
+
+        </table>
         --------------------------------------------------------------------
     </div>
 </div>
-<p><a href="/add">Post a Message</a></p>
+<p><a href="/add">Post a Message</a>--<a href="/logout">logout</a></p>
+    </div>
+</div>
+<nav th:replace="base :: footer"></nav>
+<th:block th:repalce="base :: jslinks"></th:block>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.com">
+<head th:replace="base :: headstuff">
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <div class="jumbotron">
+        <p>
+        <h4><strong>Login Page</strong></h4>
+        </p>
+
+        <div style="color: red" th:if="${param.error}">
+            Invalid username or password.
+        </div>
+        <div style="color: red" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div class="container">
+                <label><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="useruname" required="true"/>
+                <br/>
+                <br/>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required="true"/>
+                <br/>
+                <br/>
+                <button type="submit">Login</button>
+            </div>
+            <br/>
+
+        </form>
+    </div>
+</div>
+<nav th:replace="base :: footer"></nav>
+<th:block th:repalce="base :: jslinks"></th:block>
+</body>
+</html>
+
+
